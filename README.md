@@ -167,14 +167,11 @@ UDP Scan: UDP is a connectionless protocol, and hence it does not require any ha
 
 sudo nmap -sU MACHINE_IP
 
-
-
 port list: -p22,80,443 will scan ports 22, 80 and 443.
 port range: -p1-1023 will scan all ports between 1 and 1023 inclusive, 
-			while -p20-25 will scan ports between 20 and 25 inclusive.
-
-			-p- which will scan all 65535 ports. 
-			If you want to scan the most common 100 ports, add -F. Using --top-ports 10 will check the ten most common ports.
+	      while -p20-25 will scan ports between 20 and 25 inclusive.
+               -p- which will scan all 65535 ports. 
+	     f you want to scan the most common 100 ports, add -F. Using --top-ports 10 will check the ten most common ports.
 
 You can control the scan timing using -T<0-5>. 
 -T0 is the slowest (paranoid), 
