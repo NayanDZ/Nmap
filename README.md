@@ -1,7 +1,7 @@
 # Nmap
 
 ## 1. Passive Reconnaissance
-In passive reconnaissance, you rely on publicly available knowledge. It is the knowledge that you can access from publicly available resources without directly engaging with the target. Think of it like you are looking at target territory from afar without stepping foot on that territory.
+In passive reconnaissance, you depend on publicly available information that you can access from publicly available resources without directly engaging with the target. like you are looking at target domain from afar without stepping foot on that domain.
 
 - Looking up DNS records of a domain from a public DNS server.
 - Checking job ads related to the target website.
