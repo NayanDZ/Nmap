@@ -60,14 +60,12 @@ server type and version
 
 
 ## 2. Active Reconnaissance
-Active reconnaissance, on the other hand, cannot be achieved so discreetly. It requires direct engagement with the target. Think of it like you check the locks on the doors and windows, among other potential entry points.
+Active reconnaissance requires direct engagement with the target.
 
 Connecting to one of the company servers such as HTTP, FTP, and SMTP.
-Calling the company in an attempt to get information (social engineering).
-Entering company premises pretending to be a repairman.
 
 
-we discuss using simple tools to gather information about the network, system, and services
+ing simple tools to gather information about the network, system, and services
 
 - Ping: This was used to check network connectivity /  checking whether the remote system is online 
 	ping google.com || ping -c 10 google.com || ping -n google.com 
