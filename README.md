@@ -62,10 +62,10 @@ server type and version
 ## 2. Active Reconnaissance
 Active reconnaissance requires direct engagement with the target.
 
-Connecting to one of the company servers such as HTTP, FTP, and SMTP.
+Connecting to one of the company servers such as HTTP, FTP, and SMTP using simple tools to gather information about the network, system, and services.
 
 
-ing simple tools to gather information about the network, system, and services
+
 
 - Ping: This was used to check network connectivity /  checking whether the remote system is online 
 	ping google.com || ping -c 10 google.com || ping -n google.com 
