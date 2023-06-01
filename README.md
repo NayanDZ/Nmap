@@ -189,7 +189,7 @@ insane (5)
 
 --min-parallelism <numprobes> and --max-parallelism <numprobes>  probing parallelization specifies the number of such probes that can be run in parallel. For instance, --min-parallelism=512 pushes Nmap to maintain at least 512 probes in parallel; these 512 probes are related to host discovery and open ports.
 	
-## Nmap Command
+🧙‍ ## Nmap Command
 1. Scan a single host or an IP address (IPv4)
 ```
 ### Scan a single ip address ###
