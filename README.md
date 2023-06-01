@@ -188,3 +188,217 @@ insane (5)
 --max-rate=10 ensures that your scanner is not sending more than ten packets per second.
 
 --min-parallelism <numprobes> and --max-parallelism <numprobes>  probing parallelization specifies the number of such probes that can be run in parallel. For instance, --min-parallelism=512 pushes Nmap to maintain at least 512 probes in parallel; these 512 probes are related to host discovery and open ports.
+	
+## Nmap Command
+1. Scan a single host or an IP address (IPv4)
+'''
+### Scan a single ip address ###
+nmap 192.168.1.1
+	
+## Scan a host name ###
+nmap server1.server
+	
+## Scan a host name with more info###
+nmap -v server.server
+'''
+	
+2. Scan multiple IP address or subnet (IPv4)
+'''
+nmap 192.168.1.1 192.168.1.2 192.168.1.3
+	
+## works with same subnet i.e. 192.168.1.0/24
+nmap 192.168.1.1,2,3
+	
+You can scan a range of IP address too:
+nmap 192.168.1.1-20
+	
+You can scan a range of IP address using a wildcard:
+nmap 192.168.1.*
+	
+Finally, you scan an entire subnet:
+nmap 192.168.1.0/24
+'''
+3. Read list of hosts/networks from a file (IPv4)
+'''
+nmap -iL /tmp/test.txt
+'''
+
+4. Turn on OS and version detection scanning script (IPv4)
+'''
+nmap -A 192.168.1.254
+nmap -v -A 192.168.1.1
+
+# Detect remote operating system
+nmap -O 192.168.1.1
+nmap -O --osscan-guess 192.168.1.1
+nmap -v -O --osscan-guess 192.168.1.1
+'''
+5. Find out if a host/network is protected by a firewall
+'''
+nmap -sA 192.168.1.254
+'''
+6. Scan a host when protected by the firewall
+'''
+nmap -PN 192.168.1.1
+'''
+	
+7. Scan an IPv6 host/address
+	'''
+nmap -6 IPv6-Address-Here
+nmap -6 server1.server
+nmap -6 2607:f0d0:1002:51::4
+nmap -v A -6 2607:f0d0:1002:51::4
+	'''
+8. Scan a network and find out which servers and devices are up and
+running
+	'''
+	nmap -sP 192.168.1.0/24
+	'''
+9. How do I perform a fast scan?
+	'''
+	nmap -F 192.168.1.1
+	'''
+	
+10. Display the reason a port is in a particular state
+	'''
+	nmap --reason 192.168.1.1
+	'''
+11. Only show open (or possibly open) ports
+	'''
+	nmap --open 192.168.1.1
+	'''
+12. Show all packets sent and received
+	'''
+	nmap --packet-trace 192.168.1.1
+	'''
+	
+13. Show host interfaces and routes
+	'''
+	nmap --iflist
+	'''
+	
+14. How do I scan specific ports?
+	'''
+map -p [port] hostName
+
+## Scan port 80
+nmap -p 80 192.168.1.1
+
+## Scan TCP port 80
+nmap -p T:80 192.168.1.1
+
+## Scan UDP port 53
+nmap -p U:53 192.168.1.1
+
+## Scan two ports ##
+nmap -p 80,443 192.168.1.1
+
+## Scan port ranges ##
+nmap -p 80-200 192.168.1.1
+
+## Combine all options ##
+nmap -p U:53,111,137,T:21-25,80,139,8080 192.168.1.1
+nmap -p U:53,111,137,T:21-25,80,139,8080 server1.cyberciti.biz
+nmap -v -sU -sT -p U:53,111,137,T:21-25,80,139,8080 192.168.1.254
+
+## Scan all ports with * wildcard ##
+nmap -p "*" 192.168.1.1
+
+## Scan top ports i.e. scan $number most common ports ##
+nmap --top-ports 5 192.168.1.1
+nmap --top-ports 10 192.168.1.1
+'''
+
+15. The fastest way to scan all your devices/computers for open ports ever
+	'''
+	nmap -T5 192.168.1.0/24
+	'''
+16. How do I detect remote services (server / daemon) version numbers?
+'''
+nmap -sV 192.168.1.1	
+'''
+	
+17. Scan a host using TCP ACK (PA) and TCP Syn (PS) ping
+'''
+nmap -PS 192.168.1.1
+nmap -PS 80,21,443 192.168.1.1
+nmap -PA 192.168.1.1
+nmap -PA 80,21,200-512 192.168.1.1
+'''
+	
+18. Scan a host using IP protocol ping.
+'''
+nmap -PO 192.168.1.1	
+'''
+	
+19. Find out the most commonly used TCP ports using TCP SYN Scan
+'''
+### Stealthy scan ###
+nmap -sS 192.168.1.1
+	
+### Find out the most commonly used TCP ports using TCP connect scan (warning: no stealth
+scan)
+### OS Fingerprinting ###
+nmap -sT 192.168.1.1
+	
+### Find out the most commonly used TCP ports using TCP ACK scan
+nmap -sA 192.168.1.1
+	
+### Find out the most commonly used TCP ports using TCP Window scan
+nmap -sW 192.168.1.1
+	
+### Find out the most commonly used TCP ports using TCP Maimon scan
+nmap -sM 192.168.1.1
+	
+'''
+20. Scan a firewall for security weakness
+'''
+## TCP Null Scan to fool a firewall to generate a response ##
+## Does not set any bits (TCP flag header is 0) ##
+nmap -sN 192.168.1.254
+	
+## TCP Fin scan to check firewall ##
+## Sets just the TCP FIN bit ##
+nmap -sF 192.168.1.254
+	
+## TCP Xmas scan to check firewall ##
+## Sets the FIN, PSH, and URG flags, lighting the packet up like a Christmas tree ##
+nmap -sX 192.168.1.254
+'''
+	
+21. Scan a firewall for packets fragments
+	'''
+# The -f option causes the requested scan (including ping scans) to use tiny fragmented IP packets. The idea is to split up the TCP header over several packets to make it harder for packet filters, intrusion detection systems, and other annoyances to detect what you are doing.
+nmap -f 192.168.1.1
+nmap -f fw2.nixcraft.net.in
+nmap -f 15 fw2.nixcraft.net.in
+## Set your own offset size with the --mtu option ##
+nmap --mtu 32 192.168.1.1
+	'''
+	
+22. Cloak a scan with decoys
+'''
+# The -D option it appear to the remote host that the host(s) you specify as decoys are scanning the target network too. Thus their IDS might report 5-10 port scans from unique IP addresses, but they won't know which IP was scanning them and which were innocent decoys:
+nmap -n -Ddecoy-ip1,decoy-ip2,your-own-ip,decoy-ip3,decoy-ip4 remote-host-ip
+nmap -n -D192.168.1.5,10.5.1.2,172.1.2.4,3.4.2.1 192.168.1.5
+'''
+	
+23. Scan a firewall for MAC address spoofing
+'''
+### Spoof your MAC address ##
+nmap --spoof-mac MAC-ADDRESS-HERE 192.168.1.1
+	
+### Add other options ###
+nmap -v -sT -PN --spoof-mac MAC-ADDRESS-HERE 192.168.1.1
+
+### Use a random MAC address ###
+### The number 0, means nmap chooses a completely random MAC address ###
+nmap -v -sT -PN --spoof-mac 0 192.168.1.1
+'''
+	
+24. Save output to a text file.
+'''
+nmap 192.168.1.1 > output.txt
+nmap -oN /path/to/filename 192.168.1.1
+nmap -oN output.txt 192.168.1.1	
+'''
