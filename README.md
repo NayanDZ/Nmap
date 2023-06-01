@@ -278,7 +278,7 @@ running
 	```
 	
 14. How do I scan specific ports?
-	```
+```
 map -p [port] hostName
 
 ## Scan port 80
@@ -310,9 +310,9 @@ nmap --top-ports 10 192.168.1.1
 ```
 
 15. The fastest way to scan all your devices/computers for open ports ever
-	```
+```
 	nmap -T5 192.168.1.0/24
-	```
+```
 16. How do I detect remote services (server / daemon) version numbers?
 ```
 nmap -sV 192.168.1.1	
@@ -348,8 +348,7 @@ nmap -sA 192.168.1.1
 nmap -sW 192.168.1.1
 	
 ### Find out the most commonly used TCP ports using TCP Maimon scan
-nmap -sM 192.168.1.1
-	
+nmap -sM 192.168.1.1	
 ```
 20. Scan a firewall for security weakness
 ```
