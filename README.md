@@ -361,7 +361,9 @@ nmap -sX 192.168.1.254
 	
 21. Scan a firewall for packets fragments
 ```
-# The -f option causes the requested scan (including ping scans) to use tiny fragmented IP packets. The idea is to split up the TCP header over several packets to make it harder for packet filters, intrusion detection systems, and other annoyances to detect what you are doing.
+# The -f option causes the requested scan (including ping scans) to use tiny fragmented IP packets. 
+The idea is to split up the TCP header over several packets to make it harder for packet filters, 
+intrusion detection systems, and other annoyances to detect what you are doing.
 nmap -f 192.168.1.1
 nmap -f fw2.nixcraft.net.in
 nmap -f 15 fw2.nixcraft.net.in
@@ -372,7 +374,8 @@ nmap --mtu 32 192.168.1.1
 	
 22. Cloak a scan with decoys
 ```
-# The -D option it appear to the remote host that the host(s) you specify as decoys are scanning the target network too. Thus their IDS might report 5-10 port scans from unique IP addresses, but they won't know which IP was scanning them and which were innocent decoys:
+# The -D option it appear to the remote host that the host(s) you specify as decoys are scanning the target network too.
+Thus their IDS might report 5-10 port scans from unique IP addresses, but they won't know which IP was scanning them and which were innocent decoys:
 nmap -n -Ddecoy-ip1,decoy-ip2,your-own-ip,decoy-ip3,decoy-ip4 remote-host-ip
 nmap -n -D192.168.1.5,10.5.1.2,172.1.2.4,3.4.2.1 192.168.1.5
 ```
