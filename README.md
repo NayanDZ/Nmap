@@ -241,42 +241,37 @@ nmap -sA 192.168.1.254
 ```
 nmap -PN 192.168.1.1
 ```
-	
 7. Scan an IPv6 host/address
-	```
+```
 nmap -6 IPv6-Address-Here
 nmap -6 server1.server
 nmap -6 2607:f0d0:1002:51::4
 nmap -v A -6 2607:f0d0:1002:51::4
-	```
-8. Scan a network and find out which servers and devices are up and
-running
-	```
-	nmap -sP 192.168.1.0/24
-	```
+```
+8. Scan a network and find out which servers and devices are up and running
+```
+nmap -sP 192.168.1.0/24
+```
 9. How do I perform a fast scan?
-	```
-	nmap -F 192.168.1.1
-	```
-	
+```
+nmap -F 192.168.1.1
+```
 10. Display the reason a port is in a particular state
-	```
-	nmap --reason 192.168.1.1
-	```
+```
+nmap --reason 192.168.1.1
+```
 11. Only show open (or possibly open) ports
-	```
-	nmap --open 192.168.1.1
-	```
+```
+nmap --open 192.168.1.1
+```
 12. Show all packets sent and received
-	```
-	nmap --packet-trace 192.168.1.1
-	```
-	
+```
+nmap --packet-trace 192.168.1.1
+```
 13. Show host interfaces and routes
-	```
-	nmap --iflist
-	```
-	
+```
+nmap --iflist
+```
 14. How do I scan specific ports?
 ```
 map -p [port] hostName
@@ -311,13 +306,12 @@ nmap --top-ports 10 192.168.1.1
 
 15. The fastest way to scan all your devices/computers for open ports ever
 ```
-	nmap -T5 192.168.1.0/24
+nmap -T5 192.168.1.0/24
 ```
 16. How do I detect remote services (server / daemon) version numbers?
 ```
 nmap -sV 192.168.1.1	
 ```
-	
 17. Scan a host using TCP ACK (PA) and TCP Syn (PS) ping
 ```
 nmap -PS 192.168.1.1
