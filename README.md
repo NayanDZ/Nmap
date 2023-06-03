@@ -2,7 +2,6 @@
 
 ## 1. Passive Reconnaissance
 In passive reconnaissance, you depend on publicly available information that you can access from publicly available resources without directly engaging with the target. like you are looking at target domain from afar without stepping foot on that domain.
-
 - Looking up DNS records of a domain from a public DNS server.
 - Checking job ads related to the target website.
 - Reading news articles about the target company.
@@ -21,47 +20,40 @@ In passive reconnaissance, you depend on publicly available information that you
 	> *Name Server: Which server to ask to resolve the domain name?*
 
 	``` 
-	$:whois tryhackme.com 
+	$: whois tryhackme.com 
+	```
+* **nslookup (Name Server Look Up):** Find the IP address of a domain name using nslookup.
+
+	```
+	$: nslookup tryhackme.com   ||OR||    $: nslookup A tryhackme.com  1.1.1.1
+	
+	###	
+	OPTIONS		Result
+	A		IPv4 Addresses
+	AAAA		IPv6 Addresses
+	CNAME		Canonical Name
+	MX		Mail Servers
+	SOA		Start of Authority
+	TXT		TXT Records
+	
+	## You can choose any local or public DNS server to query. 
+	Cloudflare offers: 1.1.1.1 and 1.0.0.1, 
+	Google offers: 8.8.8.8 and 8.8.4.4
+	```
+* **dig (Domain Information Groper):** For more advanced DNS queries and additional functionality
+
+	```
+	$: dig tryhackme.com MX  ||OR|| $: dig @1.1.1.1 tryhackme.com MX
 	```
 
 
-Find the IP address of a domain name using nslookup, which stands for Name Server Look Up
+> DNS lookup tools, such as nslookup and dig, cannot find subdomains on their own. The domain you are inspecting might include a different subdomain that can reveal much information about the target
 
-nslookup DOMAIN_NAME     ||OR||    nslookup OPTIONS DOMAIN_NAME SERVE
-nslookup tryhackme.com   ||OR||    nslookup A tryhackme.com  1.1.1.1
-
-OPTIONS	Result
-A		IPv4 Addresses
-AAAA	IPv6 Addresses
-CNAME	Canonical Name
-MX		Mail Servers
-SOA		Start of Authority
-TXT		TXT Records
-
-
-You can choose any local or public DNS server to query. 
-Cloudflare offers 1.1.1.1 and 1.0.0.1, Google offers 8.8.8.8 and 8.8.4.4
-
-
-For more advanced DNS queries and additional functionality, you can use dig, the acronym for “Domain Information Groper,
-
-EX: dig DOMAIN_NAME   ||OR|| dig @SERVER DOMAIN_NAME TYPE
-
-dig tryhackme.com MX  ||OR|| dig @1.1.1.1 tryhackme.com MX
-
-
-DNS lookup tools, such as nslookup and dig, cannot find subdomains on their own. The domain you are inspecting might include a different subdomain that can reveal much information about the target
-
- DNSDumpster and Shodan.io
+ ``` DNSDumpster and Shodan.io ```
  
 When you are tasked to run a penetration test against specific targets, as part of the passive reconnaissance phase, a service like Shodan.io can be helpful to learn various pieces of information about the client’s network, without actively connecting to it.
 
- Via this Shodan.io search result, we can learn several things related to our search, such as:
-
-IP address
-hosting company
-geographic location
-server type and version
+ Via this Shodan.io search result, we can learn several things related to our search, such as: IP address, hosting company, geographic location, server type and version
 
 
 ## 2. Active Reconnaissance
