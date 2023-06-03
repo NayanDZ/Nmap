@@ -49,11 +49,10 @@ In passive reconnaissance, you depend on publicly available information that you
 
 > DNS lookup tools, such as nslookup and dig, cannot find subdomains on their own. The domain you are inspecting might include a different subdomain that can reveal much information about the target
 
- ``` DNSDumpster and Shodan.io ```
+ ``` DNSDumpster and Shodan.io 
  
-When you are tasked to run a penetration test against specific targets, as part of the passive reconnaissance phase, a service like Shodan.io can be helpful to learn various pieces of information about the client’s network, without actively connecting to it.
-
- Via this Shodan.io search result, we can learn several things related to our search, such as: IP address, hosting company, geographic location, server type and version
+ ## Using Shodan.io we can learn several things related to our search, such as: IP address, hosting company, geographic location, server type and version
+ ```
 
 
 ## 2. Active Reconnaissance
