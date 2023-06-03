@@ -49,7 +49,8 @@ In passive reconnaissance, you depend on publicly available information that you
 
 > DNS lookup tools, such as nslookup and dig, cannot find subdomains on their own. The domain you are inspecting might include a different subdomain that can reveal much information about the target
 
- ``` DNSDumpster and Shodan.io 
+ ``` 
+ DNSDumpster and Shodan.io 
  
  ## Using Shodan.io we can learn several things related to our search, such as: IP address, hosting company, geographic location, server type and version
  ```
