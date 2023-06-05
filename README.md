@@ -77,10 +77,6 @@ $: telnet MACHINE_IP 80 	|| 	$: telnet google.com
 
 - **nc (Netcat):** Netcat supports both TCP and UDP protocols. It can function as a client that connects to a listening port; alternatively, it can act as a server that listens on a port of your choice. Hence, it is a convenient tool that you can use as a simple client or server over TCP or UDP.
 
- 
-
-On the server system, where you want to open a port and listen on it, you can issue nc -lp 1234 or better yet, nc -vnlp 1234
-
 ```
 ## to collect its banner using nc:
 $: nc google.com 80
