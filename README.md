@@ -126,7 +126,7 @@ If your system has more than one interface and you are interested in discovering
 
 **2 Host Discovery Using ICMP**
 
-To use ICMP echo request to discover live hosts, add the option -PE : ``` sudo nmap -PE -sn MACHINE_IP/24  //where -sn don’t want to port scan ```
+To use ICMP echo request to discover live hosts, add the option **-PE** : ``` sudo nmap -PE -sn MACHINE_IP/24  //where -sn don’t want to port scan ```
 
 ICMP echo scan works by sending an ICMP echo request and expects the target to reply with an ICMP echo reply if it is online.
 
@@ -140,25 +140,29 @@ $: nmap -PP -sn MACHINE_IP/24
 nmap -PM -sn MACHINE_IP/24
 ```
 
-**3 Nmap Host Discovery Using TCP and UDP**
-TCP SYN Ping (We can send a packet with the SYN (Synchronize) flag set)
-TCP 3-way handshake usually works https://tryhackme.com/room/nmap01
+**3 Host Discovery Using TCP and UDP**
 
+TCP SYN Ping send a packet with the SYN(Synchronize) flag set [TCP 3-way handshake usually works](https://tryhackme.com/room/nmap01)
 
-If you want Nmap to use TCP SYN ping, you can do so via the option -PS : sudo nmap -PS22,80,443 -sn MACHINE_IP/30
+- ***TCP SYN Ping:*** you can perform via the option **-PS**: 
+``` 
+$: sudo nmap -PS22,80,443 -sn MACHINE_IP/30 
+```
+> Unprivileged users have no choice but to complete the 3-way handshake if the port is open.
 
-Privileged users (root and sudoers) can send TCP SYN packets and don’t need to complete the TCP 3-way handshake even if the port is open, as shown in the figure below. Unprivileged users have no choice but to complete the 3-way handshake if the port is open. https://tryhackme.com/room/nmap01
+Privileged users(root & sudoers) can send TCP SYN packets and don’t need to complete the TCP 3-way handshake even if the port is open: 
+``` 
+$: nmap -PS -sn MACHINE_IP/24 
+```
 
-nmap -PS -sn MACHINE_IP/24
-
-TCP ACK Ping
+- ***TCP ACK Ping:***
 
 The following figure shows that any TCP packet with an ACK flag should get a TCP packet back with an RST flag set. The target responds with the RST flag set because the TCP packet with the ACK flag is not part of any ongoing connection. The expected response is used to detect if the target host is up.
 
 sudo nmap -PA22,80,443 -sn MACHINE_IP/30
 
 
-UDP Ping
+- ***UDP Ping:***
 Finally, we can use UDP to discover if the host is online. Contrary to TCP SYN ping, sending a UDP packet to an open port is not expected to lead to any reply. However, if we send a UDP packet to a closed UDP port, we expect to get an ICMP port unreachable packet; this indicates that the target system is up and available.
 
 In the following figure, we see a UDP packet sent to an open UDP port and not triggering any response. However, sending a UDP packet to any closed UDP port can trigger a response indirectly indicating that the target is online.
