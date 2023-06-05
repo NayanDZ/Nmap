@@ -61,18 +61,18 @@ Active reconnaissance requires direct engagement with the target. Connecting to 
 
 - **Ping:** is used to check network connectivity or checking whether the remote system is online.
 ``` 
-	$: ping google.com  ||	  $: ping -c 10 google.com || 	$: ping -n google.com
+$: ping google.com  ||	  $: ping -c 10 google.com || 	$: ping -n google.com
 ```
 	
 - **Traceroute:** The purpose of a traceroute is to find the IP addresses of the routers or hops that a packet traverses as it goes from your system to a target host.
 ```
-	traceroute google.com
+$: traceroute google.com
 ```
 
 - **Telnet:* telnet uses the TELNET protocol for remote administration. The default port used by telnet is 23. From a security perspective, telnet sends all the data, including usernames and passwords, in cleartext. Sending in cleartext makes it easy for anyone, who has access to the communication channel, to steal the login credentials. The secure alternative is SSH (Secure SHell) protocol
 
 ```
-	$: telnet MACHINE_IP 80 	|| 	$: telnet google.com 
+$: telnet MACHINE_IP 80 	|| 	$: telnet google.com 
 ```
 
 - **nc (Netcat):** Netcat supports both TCP and UDP protocols. It can function as a client that connects to a listening port; alternatively, it can act as a server that listens on a port of your choice. Hence, it is a convenient tool that you can use as a simple client or server over TCP or UDP.
