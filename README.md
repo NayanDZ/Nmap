@@ -189,6 +189,7 @@ $: sudo nmap -sU MACHINE_IP
 ##  🧙‍♂️ Nmap Command options
 
 port list: -p22,80,443 will scan ports 22, 80 and 443.
+
 port range: -p1-1023 will scan all ports between 1 and 1023 inclusive, 
 	    -p20-25 will scan ports between 20 and 25 inclusive.
             -p- which will scan all 65535 ports. 
@@ -311,6 +312,9 @@ nmap -p 80,443 192.168.1.1
 
 ## Scan port ranges ##
 nmap -p 80-200 192.168.1.1
+	
+## Scan all ports
+nmap -p- 192.168.1.1
 
 ## Combine all options ##
 nmap -p U:53,111,137,T:21-25,80,139,8080 192.168.1.1
