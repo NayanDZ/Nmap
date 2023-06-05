@@ -153,41 +153,47 @@ Privileged users(root & sudoers) can send TCP SYN packets and don’t need to co
 $: nmap -PS -sn MACHINE_IP/24 
 ```
 
-- ***TCP ACK Ping:***
+- ***TCP ACK Ping:*** We can use response to detect if the target host is up.
 
-The following figure shows that any TCP packet with an ACK flag should get a TCP packet back with an RST flag set. The target responds with the RST flag set because the TCP packet with the ACK flag is not part of any ongoing connection. The expected response is used to detect if the target host is up.
-
+Any TCP packet with an ACK flag should get a TCP packet back with an RST flag set. The target responds with the RST flag set because the TCP packet with the ACK flag is not part of any ongoing connection. 
+```
 sudo nmap -PA22,80,443 -sn MACHINE_IP/30
+```
 
+- ***UDP Ping:*** We can use UDP to discover if the host is online.
 
-- ***UDP Ping:***
-Finally, we can use UDP to discover if the host is online. Contrary to TCP SYN ping, sending a UDP packet to an open port is not expected to lead to any reply. However, if we send a UDP packet to a closed UDP port, we expect to get an ICMP port unreachable packet; this indicates that the target system is up and available.
+Sending a UDP packet to an open port is not expected to lead to any reply. However, if we send a UDP packet to a closed UDP port, we expect to get an ICMP port unreachable packet; this indicates that the target system is up and available.
 
-In the following figure, we see a UDP packet sent to an open UDP port and not triggering any response. However, sending a UDP packet to any closed UDP port can trigger a response indirectly indicating that the target is online.
-
+```
 sudo nmap -PU53,161,162 -sn MACHINE_IP/30
+```
 
+## 4. Nmap Basic Port Scaning
+- **TCP Connect Scan:** TCP connect scan works by completing the TCP 3-way handshake. In standard TCP connection establishment, the client sends a TCP packet with SYN flag set, and the server responds with SYN/ACK if the port is open; finally, the client completes the 3-way handshake by sending an ACK.
 
-## 4. Nmap Basic Port Scans
-TCP Connect Scan: TCP connect scan works by completing the TCP 3-way handshake. In standard TCP connection establishment, the client sends a TCP packet with SYN flag set, and the server responds with SYN/ACK if the port is open; finally, the client completes the 3-way handshake by sending an ACK.
+We are interested in learning whether the TCP port is open, not establishing a TCP connection. Hence the connection is torn as soon as its state is confirmed by sending a RST/ACK. You can choose to run TCP connect scan using -sT option.
+```
+$: nmap -sT MACHINE_IP
+```
 
-We are interested in learning whether the TCP port is open, not establishing a TCP connection. Hence the connection is torn as soon as its state is confirmed by sending a RST/ACK. You can choose to run TCP connect scan using -sT.
+- **TCP SYN Scan:** Unprivileged users are limited to connect scan. However, the default scan mode is SYN scan, and it requires a privileged (root or sudoer) user to run it. SYN scan does not need to complete the TCP 3-way handshake; instead, it tears down the connection once it receives a response from the server. Because we didn’t establish a TCP connection, this decreases the chances of the scan being logged. We can select this scan type by using the -sS option.
+```
+$: nmap -sS MACHINE_IP
+```
 
-nmap -sT MACHINE_IP
+- **UDP Scan:** UDP is a connectionless protocol, and hence it does not require any handshake for connection establishment. We cannot guarantee that a service listening on a UDP port would respond to our packets. However, if a UDP packet is sent to a closed port, an ICMP port unreachable error (type 3, code 3) is returned. You can select UDP scan using the -sU options.
+```
+$: sudo nmap -sU MACHINE_IP
+```
 
-TCP SYN Scan: Unprivileged users are limited to connect scan. However, the default scan mode is SYN scan, and it requires a privileged (root or sudoer) user to run it. SYN scan does not need to complete the TCP 3-way handshake; instead, it tears down the connection once it receives a response from the server. Because we didn’t establish a TCP connection, this decreases the chances of the scan being logged. We can select this scan type by using the -sS option
-
-nmap -sS MACHINE_IP
-
-UDP Scan: UDP is a connectionless protocol, and hence it does not require any handshake for connection establishment. We cannot guarantee that a service listening on a UDP port would respond to our packets. However, if a UDP packet is sent to a closed port, an ICMP port unreachable error (type 3, code 3) is returned. You can select UDP scan using the -sU
-
-sudo nmap -sU MACHINE_IP
+##  🧙‍♂️ Nmap Command options
 
 port list: -p22,80,443 will scan ports 22, 80 and 443.
 port range: -p1-1023 will scan all ports between 1 and 1023 inclusive, 
-	      while -p20-25 will scan ports between 20 and 25 inclusive.
-               -p- which will scan all 65535 ports. 
-	     f you want to scan the most common 100 ports, add -F. Using --top-ports 10 will check the ten most common ports.
+	    -p20-25 will scan ports between 20 and 25 inclusive.
+            -p- which will scan all 65535 ports. 
+	    -F if you want to scan the most common 100 ports.
+	    --top-ports 10 will check the ten most common ports.
 
 You can control the scan timing using -T<0-5>. 
 -T0 is the slowest (paranoid), 
@@ -205,7 +211,6 @@ insane (5)
 
 --min-parallelism <numprobes> and --max-parallelism <numprobes>  probing parallelization specifies the number of such probes that can be run in parallel. For instance, --min-parallelism=512 pushes Nmap to maintain at least 512 probes in parallel; these 512 probes are related to host discovery and open ports.
 	
-##  🧙‍♂️ Nmap Command
 1. Scan a single host or an IP address (IPv4)
 ```
 ### Scan a single ip address ###
