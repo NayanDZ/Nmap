@@ -124,19 +124,21 @@ One popular choice is ```$: arp-scan --localnet``` or simply ```$: arp-scan -l``
 If your system has more than one interface and you are interested in discovering the live hosts on one of them, you can specify the interface using -I. For instance, ``` $: sudo arp-scan -I eth0 -l``` will send ARP queries for all valid IP addresses on the eth0 interface.
 
 
-**2 Nmap Host Discovery Using ICMP**
-To use ICMP echo request to discover live hosts, add the option -PE : sudo nmap -PE -sn MACHINE_IP/24  where -sn don’t want to port scan
+**2 Host Discovery Using ICMP**
+
+To use ICMP echo request to discover live hosts, add the option -PE : ``` sudo nmap -PE -sn MACHINE_IP/24  //where -sn don’t want to port scan ```
 
 ICMP echo scan works by sending an ICMP echo request and expects the target to reply with an ICMP echo reply if it is online.
 
-different subnet
-Because ICMP echo requests tend to be blocked, you might also consider ICMP Timestamp or ICMP Address Mask requests to tell if a system is online. Nmap uses timestamp request (ICMP Type 13) and checks whether it will get a Timestamp reply (ICMP Type 14). 
+Different subnet: Because ICMP echo requests tend to be blocked, you might also consider ICMP Timestamp or ICMP Address Mask requests to tell if a system is online. 
+Nmap uses timestamp request (ICMP Type 13) and checks whether it will get a Timestamp reply (ICMP Type 14). 
+```
+## ICMP timestamp requests use -PP option: 
+$: nmap -PP -sn MACHINE_IP/24
 
-Adding the -PP option tells Nmap to use ICMP timestamp requests: 
-nmap -PP -sn MACHINE_IP/24
-
-ICMP Address Mask requests can be enabled with the option -PM
+## ICMP Address Mask requests can be enabled with the option -PM
 nmap -PM -sn MACHINE_IP/24
+```
 
 **3 Nmap Host Discovery Using TCP and UDP**
 TCP SYN Ping (We can send a packet with the SYN (Synchronize) flag set)
