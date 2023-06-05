@@ -142,9 +142,7 @@ nmap -PM -sn MACHINE_IP/24
 
 **3 Host Discovery Using TCP and UDP**
 
-TCP SYN Ping send a packet with the SYN(Synchronize) flag set [TCP 3-way handshake usually works](https://tryhackme.com/room/nmap01)
-
-- ***TCP SYN Ping:*** you can perform via the option **-PS**: 
+- ***TCP SYN Ping:*** TCP SYN Ping send a packet with the SYN(Synchronize) flag set [TCP 3-way handshake usually works](https://tryhackme.com/room/nmap01) you can perform via the option **-PS**: 
 ``` 
 $: sudo nmap -PS22,80,443 -sn MACHINE_IP/30 
 ```
