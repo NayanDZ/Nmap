@@ -69,7 +69,7 @@ $: ping google.com  ||	  $: ping -c 10 google.com || 	$: ping -n google.com
 $: traceroute google.com
 ```
 
-- **Telnet:* telnet uses the TELNET protocol for remote administration. The default port used by telnet is 23. From a security perspective, telnet sends all the data, including usernames and passwords, in cleartext. Sending in cleartext makes it easy for anyone, who has access to the communication channel, to steal the login credentials. The secure alternative is SSH (Secure SHell) protocol
+- **Telnet:* telnet uses the TELNET protocol for remote administration. The default port used by telnet is 23. From a security perspective, telnet sends all the data, including usernames and passwords, in cleartext. Sending in cleartext makes it easy for anyone, who has access to the communication channel, to steal the login credentials. The secure alternative is SSH (Secure SHell) 22 port protocol.
 
 ```
 $: telnet MACHINE_IP 80 	|| 	$: telnet google.com 
