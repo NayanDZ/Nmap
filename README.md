@@ -57,32 +57,45 @@ In passive reconnaissance, you depend on publicly available information that you
 
 
 ## 2. Active Reconnaissance
-Active reconnaissance requires direct engagement with the target.
+Active reconnaissance requires direct engagement with the target. Connecting to one of the target servers such as HTTP, FTP, and SMTP using simple tools to gather information about the network, system, and services.
 
-Connecting to one of the company servers such as HTTP, FTP, and SMTP using simple tools to gather information about the network, system, and services.
-
-- Ping: This was used to check network connectivity /  checking whether the remote system is online 
-	ping google.com || ping -c 10 google.com || ping -n google.com
+- **Ping:** is used to check network connectivity or checking whether the remote system is online.
+``` 
+	$: ping google.com  ||	  $: ping -c 10 google.com || 	$: ping -n google.com
+```
 	
-- Traceroute: The purpose of a traceroute is to find the IP addresses of the routers or hops that a packet traverses as it goes from your system to a target host 
+- **Traceroute:** The purpose of a traceroute is to find the IP addresses of the routers or hops that a packet traverses as it goes from your system to a target host.
+```
 	traceroute google.com
-	
-- Telnet: telnet uses the TELNET protocol for remote administration. The default port used by telnet is 23. From a security perspective, telnet sends all the data, including usernames and passwords, in cleartext. Sending in cleartext makes it easy for anyone, who has access to the communication channel, to steal the login credentials. The secure alternative is SSH (Secure SHell) protocol
+```
 
-telnet MACHINE_IP 80 || telnet google.com 
+- **Telnet:* telnet uses the TELNET protocol for remote administration. The default port used by telnet is 23. From a security perspective, telnet sends all the data, including usernames and passwords, in cleartext. Sending in cleartext makes it easy for anyone, who has access to the communication channel, to steal the login credentials. The secure alternative is SSH (Secure SHell) protocol
 
-- nc: Netcat supports both TCP and UDP protocols. It can function as a client that connects to a listening port; alternatively, it can act as a server that listens on a port of your choice. Hence, it is a convenient tool that you can use as a simple client or server over TCP or UDP.
+```
+	$: telnet MACHINE_IP 80 	|| 	$: telnet google.com 
+```
 
-First, you can connect to a server, as you did with Telnet, to collect its banner using nc MACHINE_IP PORT, which is quite similar to our previous telnet MACHINE_IP PORT. Note that you might need to press SHIFT+ENTER after the GET line.
+- **nc (Netcat):** Netcat supports both TCP and UDP protocols. It can function as a client that connects to a listening port; alternatively, it can act as a server that listens on a port of your choice. Hence, it is a convenient tool that you can use as a simple client or server over TCP or UDP.
 
-In the terminal shown above, we used netcat to connect to MACHINE_IP port 80 using nc MACHINE_IP 80. Next, we issued a get for the default page using GET / HTTP/1.1; we are specifying to the target server that our client supports HTTP version 1.1. Finally, we need to give a name to our host, so we added on a new line, host: netcat; you can name your host anything as this has no impact on this exercise.
+ 
 
 On the server system, where you want to open a port and listen on it, you can issue nc -lp 1234 or better yet, nc -vnlp 1234
 
-netcat as client	nc MACHINE_IP PORT_NUMBER
-netcat as server	nc -lvnp PORT_NUMBER
+```
+## to collect its banner using nc:
+$: nc google.com 80
+GET / HTTP/1.1
+host: netcat
 
-https://tryhackme.com/room/activerecon
+## You can use netcat to listen on a TCP port and connect to a listening port on another system.
+
+On the server system, where you want to open a port and listen on it, you can issue nc -lp 1234 or better yet, nc -vnlp 1234
+netcat as client	nc MACHINE_IP PORT_NUMBER
+netcat as server	nc -lvnp PORT_NUMBER   || nc -lp PORT_NUMBER
+
+## Refrence: https://tryhackme.com/room/activerecon
+```
+
 
 ## 3. Nmap Live Host Discovery
 
