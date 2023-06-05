@@ -69,7 +69,7 @@ $: ping google.com  ||	  $: ping -c 10 google.com || 	$: ping -n google.com
 $: traceroute google.com
 ```
 
-- **Telnet:* telnet uses the TELNET protocol for remote administration. The default port used by telnet is 23. From a security perspective, telnet sends all the data, including usernames and passwords, in cleartext. Sending in cleartext makes it easy for anyone, who has access to the communication channel, to steal the login credentials. The secure alternative is SSH (Secure SHell) 22 port protocol.
+- **Telnet:** telnet uses the TELNET protocol for remote administration. The default port used by telnet is 23. From a security perspective, telnet sends all the data, including usernames and passwords, in cleartext. Sending in cleartext makes it easy for anyone, who has access to the communication channel, to steal the login credentials. The secure alternative is SSH (Secure SHell) 22 port protocol.
 
 ```
 $: telnet MACHINE_IP 80 	|| 	$: telnet google.com 
@@ -94,28 +94,34 @@ netcat as server	nc -lvnp PORT_NUMBER   || nc -lp PORT_NUMBER
 
 
 ## 3. Nmap Live Host Discovery
+Discovering Live Hosts using:
 
-Discovering Live Hosts:
-	- ARP from Link Layer
-	- ICMP from Network Layer
-	- TCP from Transport Layer
-	- UDP from Transport Layer
+1. ARP from Link Layer
+2. ICMP from Network Layer
+3. TCP from Transport Layer
+4. UDP from Transport Layer
 
-**1 Nmap Host Discovery Using ARP**
 There are various ways to discover online hosts. When no host discovery options are provided, Nmap follows the following approaches to discover live hosts:
 
-1. When a privileged user tries to scan targets on a local network (Ethernet), Nmap uses ARP requests. A privileged user is root or a user who belongs to sudoers and can run sudo.
-2. When a privileged user tries to scan targets outside the local network, Nmap uses ICMP echo requests, TCP ACK (Acknowledge) to port 80, TCP SYN (Synchronize) to port 443, and ICMP timestamp request.
-3. When an unprivileged user tries to scan targets outside the local network, Nmap resorts to a TCP 3-way handshake by sending SYN packets to ports 80 and 443.
+1. When a privileged user tries to ***scan targets on a local network (Ethernet), Nmap uses ARP requests.*** A privileged user is root or a user who belongs to sudoers and can run sudo.
+2. When a privileged user tries to ***scan targets outside the local network, Nmap uses ICMP echo requests, TCP ACK (Acknowledge) to port 80, TCP SYN (Synchronize) to port 443, and ICMP timestamp request.***
+3. When an unprivileged user tries to ***scan targets outside the local network, Nmap resorts to a TCP 3-way handshake by sending SYN packets to ports 80 and 443.***
 
-If you want to use Nmap to discover online hosts without port-scanning the live systems, you can issue: nmap -sn TARGETS
+> Discover online hosts without port-scanning you can use: ``` $: nmap -sn TARGETS ```
+
+**1. Host Discovery Using ARP**
 
 ARP scan is possible only if you are on the same subnet as the target systems. 
-If you want all the live systems on the same subnet as our target machine to perform an ARP scan without port-scanning, you can use: sudo nmap -PR -sn MACHINE_IP/24, where -PR indicates ARP scan
 
-ARP scan works, as shown in the figure below. Nmap sends ARP requests to all the target computers, and those online should send an ARP reply back.
+If you want all the live systems on the same subnet as our target machine to perform an ARP scan without port-scanning, you can use: 
+```
+$: sudo nmap -PR -sn MACHINE_IP/24, where -PR indicates ARP scan
 
-One popular choice is arp-scan --localnet or simply arp-scan -l. This command will send ARP queries to all valid IP addresses on your local networks. Moreover, if your system has more than one interface and you are interested in discovering the live hosts on one of them, you can specify the interface using -I. For instance, sudo arp-scan -I eth0 -l will send ARP queries for all valid IP addresses on the eth0 interface.
+## Nmap sends ARP requests to all the target computers, and those online should send an ARP reply back.
+```
+One popular choice is ```$: arp-scan --localnet``` or simply ```$: arp-scan -l```. This command will send ARP queries to all valid IP addresses on your local networks. 
+
+If your system has more than one interface and you are interested in discovering the live hosts on one of them, you can specify the interface using -I. For instance, ``` $: sudo arp-scan -I eth0 -l``` will send ARP queries for all valid IP addresses on the eth0 interface.
 
 
 **2 Nmap Host Discovery Using ICMP**
