@@ -221,7 +221,8 @@ You can control the scan timing using -T<0-5>
 --max-rate=10 ensures that your scanner is not sending more than ten packets per second.
 
 --min-parallelism <numprobes> and --max-parallelism <numprobes>  probing parallelization specifies the number of such probes that can be run in parallel. For instance, --min-parallelism=512 pushes Nmap to maintain at least 512 probes in parallel; these 512 probes are related to host discovery and open ports.
-	
+```
+
 2. Scan a single host or an IP address (IPv4)
 ```
 ### Scan a single ip address ###
@@ -340,7 +341,8 @@ nmap -sW 192.168.1.1
 ### Find out the most commonly used TCP ports using TCP Maimon scan
 nmap -sM 192.168.1.1	
 ```
-28. Scan a firewall for security weakness
+
+18. Scan a firewall for security weakness
 ```
 ## TCP Null Scan to fool a firewall to generate a response ##
 ## Does not set any bits (TCP flag header is 0) ##
